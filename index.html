@@ -80,6 +80,14 @@
     .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.67rem; padding: 0.3rem 0.75rem; background: var(--blush); color: var(--wine); border-radius: 2px; }
     .tool-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--wine); text-decoration: none; border-bottom: 1px solid rgba(125,31,46,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
     .tool-link:hover { border-color: var(--wine); }
+    .screenshots-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0 0.5rem; }
+    .screenshots-grid img { width: 100%; border-radius: 4px; border: 1px solid var(--border); cursor: zoom-in; transition: transform 0.2s, box-shadow 0.2s; object-fit: cover; height: 130px; }
+    .screenshots-grid img:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(125,31,46,0.15); }
+    .screenshot-note { font-size: 0.72rem; color: var(--muted); font-style: italic; margin: 0.4rem 0 1rem; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(28,21,18,0.92); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 4px; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 2rem; color: white; font-size: 2rem; cursor: pointer; opacity: 0.7; line-height: 1; }
 
     /* STRENGTHS */
     .strengths { background: var(--ink); color: var(--white); }
@@ -256,41 +264,62 @@
   <!-- TOOLS BUILT -->
   <section class="tools-built" id="tools">
     <div class="section-eyebrow">Tools Built</div>
-    <div class="section-title">Real projects,<br/>live on GitHub.</div>
+    <div class="section-title">Real tools I built,<br/>live on GitHub.</div>
     <div class="tools-grid">
       <div class="tool-card reveal">
         <div class="tool-card-accent"></div>
         <div class="tool-number">01</div>
         <div class="tool-icon">🛠️</div>
         <h3>Platinumlist QA Tool</h3>
-        <p>A password-protected single-file web app for quality assurance teams. Features scorecard auto-calculation, Numbers Overview table, and a coaching email generator powered by the Claude API. My first fully deployed project — built using vibe coding.</p>
+        <p>A password-protected single-file web app for quality assurance teams. Features scorecard auto-calculation, Numbers Overview table, and a coaching email generator powered by the Claude API. Built using vibe coding with Claude and Codex — fully deployed on GitHub.</p>
         <div class="tool-tags"><span class="tag">HTML / JS</span><span class="tag">Claude API</span><span class="tag">GitHub Pages</span><span class="tag">Vibe Coding</span></div>
-        <a href="https://github.com/nohafahmy" class="tool-link" target="_blank">View on GitHub ↗</a>
+        <a href="https://github.com/Ntota94/platinumlist-qa" class="tool-link" target="_blank">View on GitHub ↗</a>
       </div>
       <div class="tool-card reveal">
         <div class="tool-card-accent"></div>
         <div class="tool-number">02</div>
         <div class="tool-icon">🤖</div>
-        <h3>Platinumlist AI Assistant</h3>
-        <p>An AI-powered assistant built on the Anthropic Claude API — designed to help customer service and operations teams get instant, structured answers from internal knowledge bases without opening Notion.</p>
-        <div class="tool-tags"><span class="tag">Anthropic API</span><span class="tag">HTML / JS</span><span class="tag">GitHub Pages</span><span class="tag">Vibe Coding</span></div>
-        <a href="https://github.com/nohafahmy" class="tool-link" target="_blank">View on GitHub ↗</a>
+        <h3>Platinumlist KB Assistant</h3>
+        <p>A full desktop AI assistant app built on the Anthropic Claude API — with department-based sidebar (CS, Operations, Finance, HR, Marketing, Product, Sales), chat history, suggested questions, and an Admin Dashboard tracking answer rates, KB gaps, API costs, and usage analytics. Built using vibe coding with Claude and Codex.</p>
+        <div class="tool-tags"><span class="tag">Anthropic API</span><span class="tag">Desktop App</span><span class="tag">All Departments</span><span class="tag">Admin Dashboard</span><span class="tag">Vibe Coding</span></div>
+        <div class="screenshots-grid">
+          <img src="kb-chat.png" alt="KB Assistant Chat Interface" onclick="openLightbox(this.src)" />
+          <img src="kb-admin.png" alt="KB Admin Dashboard" onclick="openLightbox(this.src)" />
+        </div>
+        <p class="screenshot-note">↑ Department chat interface · Admin dashboard with analytics</p>
       </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS BUILT -->
+  <section class="tools-built" id="systems" style="background: var(--white); padding-top: 0;">
+    <div class="section-eyebrow">Systems & Knowledge</div>
+    <div class="section-title">Operational systems<br/>built from scratch.</div>
+    <div class="tools-grid">
       <div class="tool-card reveal">
         <div class="tool-card-accent"></div>
         <div class="tool-number">03</div>
         <div class="tool-icon">📚</div>
-        <h3>Notion Knowledge Bases</h3>
-        <p>Built and maintain full KB systems in Notion for Customer Support and Operations teams across UAE and GCC — SOPs, training docs, escalation guides, and role-based workflow structures. Scoped a custom Notion AI Agent for the CS team.</p>
-        <div class="tool-tags"><span class="tag">Notion</span><span class="tag">Notion AI</span><span class="tag">SOP Design</span><span class="tag">Workflow Systems</span></div>
+        <h3>Platinumlist Knowledge Base — All Departments</h3>
+        <p>Built and maintain a full company Knowledge Base in Notion — the single source of truth for processes, SOPs, tools, and guidelines across all 8 departments: Customer Support, Operations, Attractions, Sales, Product, Marketing, Finance, and HR. Also configured a custom Notion AI Agent (CS Agent) that gives teams instant structured answers directly from the KB — with chat history, refund policy lookups, and full Notion integration.</p>
+        <div class="tool-tags"><span class="tag">Notion</span><span class="tag">Notion AI Agent</span><span class="tag">8 Departments</span><span class="tag">SOPs</span><span class="tag">UAE & GCC</span></div>
+        <div class="screenshots-grid" style="grid-template-columns: 1fr 1fr; margin-top: 1.2rem;">
+          <img src="notion-kb.png" alt="Platinumlist Notion Knowledge Base — all departments" onclick="openLightbox(this.src)" />
+          <img src="notion-agent.png" alt="Notion CS AI Agent in action" onclick="openLightbox(this.src)" />
+        </div>
+        <p class="screenshot-note">↑ Notion KB homepage · CS AI Agent answering refund queries</p>
       </div>
       <div class="tool-card reveal">
         <div class="tool-card-accent"></div>
         <div class="tool-number">04</div>
         <div class="tool-icon">📱</div>
         <h3>Drip Burger — Digital Operations</h3>
-        <p>Freelance VA role for a UAE food truck: built branded menus and social media content in Canva, managed the ChatFood platform, created email outreach systems, and handled client communications and calendar management end-to-end.</p>
-        <div class="tool-tags"><span class="tag">Canva</span><span class="tag">ChatFood</span><span class="tag">Social Media</span><span class="tag">Email Outreach</span></div>
+        <p>Freelance virtual assistant role for a UAE food truck and catering business. Managed the full digital side: branded menus and social media content in Canva, ChatFood platform management, email outreach systems, client communications, invoicing, and calendar and vendor coordination — all remotely.</p>
+        <div class="tool-tags"><span class="tag">Canva</span><span class="tag">ChatFood</span><span class="tag">Social Media</span><span class="tag">Email Outreach</span><span class="tag">Freelance VA</span></div>
+        <div class="screenshots-grid" style="grid-template-columns: 1fr; margin-top: 1.2rem;">
+          <img src="School_Menu.png" alt="Drip Burger menu designed in Canva" onclick="openLightbox(this.src)" style="height: 200px; object-fit: cover; object-position: top;" />
+        </div>
+        <p class="screenshot-note">↑ Branded menu designed in Canva for Drip Burger UAE</p>
       </div>
     </div>
   </section>
@@ -447,7 +476,7 @@
     <p class="contact-desc">Open to remote opportunities in training, operations, quality, virtual support, or any role where building systems and improving teams matters.</p>
     <div class="contact-buttons">
       <a href="mailto:nohafahmy1894@gmail.com" class="btn btn-primary">✉ nohafahmy1894@gmail.com</a>
-      <a href="https://github.com/nohafahmy" class="btn btn-outline" target="_blank">GitHub ↗</a>
+      <a href="https://github.com/Ntota94" class="btn btn-outline" target="_blank">GitHub ↗</a>
       <a href="tel:+201009945708" class="btn btn-outline">+201009945708</a>
     </div>
   </section>
@@ -456,6 +485,12 @@
     <p>© 2025 Noha Ahmed · UAE</p>
     <p>Built with vibe coding · Claude + Codex · Deployed on GitHub Pages</p>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <img id="lightbox-img" src="" alt="Screenshot" />
+  </div>
 
   <script>
     const cursor = document.getElementById('cursor');
@@ -471,6 +506,15 @@
       requestAnimationFrame(animRing);
     }
     animRing();
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
